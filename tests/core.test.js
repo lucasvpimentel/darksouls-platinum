@@ -189,3 +189,13 @@ test('todos os módulos JS têm sintaxe válida (app.js quebrado = login morto)'
   assert.ok(files.length > 20);
   for (const f of files) execFileSync(process.execPath, ['--check', f], { stdio: 'pipe' });
 });
+
+import { QUESTS, QUEST_STEP_IDS, stepId } from '../js/data/quests.js';
+test('questlines: ids únicos, todo passo tem texto, passos com full têm sp', () => {
+  assert.equal(new Set(QUEST_STEP_IDS).size, QUEST_STEP_IDS.length);
+  assert.ok(QUESTS.length >= 10);
+  for (const q of QUESTS) for (const x of q.steps) {
+    assert.ok(x.safe, stepId(q, x));
+    if (x.full) assert.ok(x.sp, 'full sem sp: ' + stepId(q, x));
+  }
+});

@@ -1,4 +1,4 @@
-export const ROUTES = ['home', 'rota', 'atlas', 'conquistas', 'armas', 'magias', 'aprimoramentos', 'farm', 'lore', 'builds', 'dados'];
+export const ROUTES = ['home', 'rota', 'atlas', 'conquistas', 'armas', 'magias', 'aprimoramentos', 'farm', 'quests', 'lore', 'builds', 'dados'];
 
 export function startRouter(render) {
   const go = () => {

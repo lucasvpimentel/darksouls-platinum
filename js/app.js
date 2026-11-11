@@ -10,12 +10,13 @@ import { renderHome } from './views/home.js';
 import { renderAtlas } from './views/atlas.js';
 import { renderData } from './views/data.js';
 import { renderBuilds } from './views/builds.js';
+import { renderQuests } from './views/quests.js';
 import { renderLore } from './views/lore.js';
 import { renderFarm } from './views/farm.js';
 import { renderMagic, renderUpgrades } from './views/magic.js';
 
 const $ = s => document.querySelector(s);
-const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, home: renderHome, atlas: renderAtlas, builds: renderBuilds, dados: renderData, farm: renderFarm, lore: renderLore, magias: renderMagic, aprimoramentos: renderUpgrades };
+const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, home: renderHome, atlas: renderAtlas, builds: renderBuilds, dados: renderData, farm: renderFarm, lore: renderLore, quests: renderQuests, magias: renderMagic, aprimoramentos: renderUpgrades };
 
 // localStorage pode lançar (modo privado, dados bloqueados): o store lida com isso e avisa.
 const storage = (() => { try { return window.localStorage; } catch { return { getItem() { throw 1; }, setItem() { throw 1; } }; } })();

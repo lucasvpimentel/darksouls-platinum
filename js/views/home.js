@@ -15,6 +15,7 @@ const LINKS = [
   ['#/magias', '✨', 'Magias', 'Feitiços, piromancias e milagres'],
   ['#/aprimoramentos', '🔨', 'Aprimoramentos', 'Brasas, ferreiros e titanitas'],
   ['#/farm', '💰', 'Farm', 'Itens, titanitas e almas'],
+  ['#/quests', '🧑‍🤝‍🧑', 'Questlines', 'Passo a passo dos NPCs e o que pode travar'],
   ['#/lore', '📜', 'Lore', 'A história de Lordran'],
   ['#/builds', '🛡️', 'Builds', 'Meta, memebuilds e simulador'],
   ['#/dados', '☁️', 'Dados & Nuvem', 'Backup e sincronização'],

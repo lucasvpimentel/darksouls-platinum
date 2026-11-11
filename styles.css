@@ -304,3 +304,5 @@ label.btn { display: inline-block; }
 .orn::after { background: linear-gradient(270deg, transparent, var(--gold)); } .orn span::before, .orn span::after { content: ' ◆ '; color: var(--gold); font-size: 9px; }
 .hl .hi { filter: drop-shadow(0 0 6px rgba(197,155,71,.4)); } .hl { background-image: linear-gradient(160deg, rgba(197,155,71,.06), transparent 60%); }
 @media (max-width: 600px) { .hero { grid-template-columns: 1fr auto; } .herofire { display: none; } .ring { width: 92px; height: 92px; } }
+.qwhere { margin: 8px 16px 0; }
+.area li[hidden], .area[hidden] { display: none; }
