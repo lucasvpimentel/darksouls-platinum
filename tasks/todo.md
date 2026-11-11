@@ -70,9 +70,9 @@ Revisão humana obrigatória em cada **Checkpoint** antes da próxima fase.
 - [x] Checkpoint 3: 50 itens, alocação coerente; decidir auto-sugestão do troféu Knight's Honor
 
 ## Fase 4: Magias e aprimoramentos
-- [ ] **T11** — Dados + view com 3 abas (24 feitiços / 19 piromancias / 23 milagres), mercador, alerta de perda definitiva
-- [ ] **T12** — Matriz das 10 infusões máximas (brasa, ferreiro, slab) com checklist
-- [ ] Checkpoint 4: contagens 24/19/23/10 conferem; alertas visíveis
+- [x] **T11** — Dados + view com 3 abas (24 feitiços / 19 piromancias / 23 milagres), mercador, alerta de perda definitiva
+- [x] **T12** — Matriz das 10 infusões máximas (brasa, ferreiro, slab) com checklist
+- [x] Checkpoint 4: contagens 24/19/23/10 conferem; alertas visíveis
 
 ## Fase 5: Builds, nuvem, backup, deploy
 - [ ] **T13** — Export/Import JSON (valida schema, confirma antes de sobrescrever) + reset em 2 etapas

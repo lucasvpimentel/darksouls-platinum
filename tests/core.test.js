@@ -96,3 +96,13 @@ test('farm: ids únicos, todo item marcado verify', () => {
   assert.equal(new Set(FARM.map(f => f.id)).size, FARM.length);
   assert.ok(FARM.every(f => f.verify && f.safe));
 });
+
+import { SORCERIES, PYROMANCIES, MIRACLES } from '../js/data/spells.js';
+import { UPGRADES } from '../js/data/upgrades.js';
+test('magias 24/19/23, ids únicos; aprimoramentos 10 ligados aos troféus', () => {
+  assert.deepEqual([SORCERIES.length, PYROMANCIES.length, MIRACLES.length], [24, 19, 23]);
+  const all = [...SORCERIES, ...PYROMANCIES, ...MIRACLES];
+  assert.equal(new Set(all.map(x => x.id)).size, 66);
+  assert.equal(UPGRADES.length, 10);
+  for (const u of UPGRADES) assert.ok(TROPHIES.some(t => t.id === u.id), u.id);
+});

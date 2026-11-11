@@ -152,3 +152,7 @@ li.warn label::before { content: '⚠'; color: var(--ember); margin-top: 1px; }
 .sifrow select { background: #0f1114; color: var(--parch); border: 1px solid #3a3426; padding: 6px 8px; }
 .sif .msg { min-height: 0; font: 13px var(--sans); }
 .plain { margin: 6px 0; padding-left: 18px; }
+
+.tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.tab { font: 500 14px var(--serif); letter-spacing: .05em; padding: 8px 14px; color: var(--stone); background: #14171b; border: 1px solid #3a3426; cursor: pointer; }
+.tab[aria-selected=true] { color: var(--gold-hi); border-color: var(--gold); box-shadow: var(--glow); }

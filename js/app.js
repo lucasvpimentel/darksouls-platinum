@@ -7,14 +7,14 @@ import { renderRoute } from './views/route.js';
 import { renderTrophies } from './views/trophies.js';
 import { renderWeapons } from './views/weapons.js';
 import { renderFarm } from './views/farm.js';
+import { renderMagic, renderUpgrades } from './views/magic.js';
 
 const $ = s => document.querySelector(s);
 const SOON = {
-  magias: ['Magias', 4],
-  aprimoramentos: ['Aprimoramentos', 4], builds: ['Builds', 5], dados: ['Dados & Nuvem', 5],
+  builds: ['Builds', 5], dados: ['Dados & Nuvem', 5],
 };
 
-const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, farm: renderFarm };
+const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, farm: renderFarm, magias: renderMagic, aprimoramentos: renderUpgrades };
 
 // localStorage pode lançar (modo privado, dados bloqueados): o store lida com isso e avisa.
 const storage = (() => { try { return window.localStorage; } catch { return { getItem() { throw 1; }, setItem() { throw 1; } }; } })();
@@ -39,7 +39,7 @@ function renderView(route) {
     if (a.hash === '#/' + route) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
   const el = $('#view');
-  el.onchange = null;
+  el.onchange = null; el.onclick = null;
   if (VIEWS[route]) return VIEWS[route](el, store);
   const [name, phase] = SOON[route];
   el.innerHTML = `<div class="panel soon"><h2>${name}</h2><p class="lead">Chega na Fase ${phase}.</p></div>`;
