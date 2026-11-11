@@ -64,10 +64,10 @@ Revisão humana obrigatória em cada **Checkpoint** antes da próxima fase.
 - [x] Checkpoint 2: contagens batem, filtros combinam, % correto, reload mantém
 
 ## Fase 3: Armas raras (Knight's Honor — 50)
-- [ ] **T8** — Dados `weapons.js` (50: 15 almas, 6 caudas, 2 pactos, 12 tesouros, 15 drops) + teste de contagens
-- [ ] **T9** — View: checklist, filtros por tipo, busca em tempo real, requisitos de forja (+10)
-- [ ] **T10** — Alocação de almas de Sif por ciclo NG/NG+/NG++ (estado + regra de 3 almas no NG++)
-- [ ] Checkpoint 3: 50 itens, alocação coerente; decidir auto-sugestão do troféu Knight's Honor
+- [x] **T8** — Dados `weapons.js` (50: 15 almas, 6 caudas, 2 pactos, 12 tesouros, 15 drops) + teste de contagens
+- [x] **T9** — View: checklist, filtros por tipo, busca em tempo real, requisitos de forja (+10)
+- [x] **T10** — Alocação de almas de Sif por ciclo NG/NG+/NG++ (estado + regra de 3 almas no NG++)
+- [x] Checkpoint 3: 50 itens, alocação coerente; decidir auto-sugestão do troféu Knight's Honor
 
 ## Fase 4: Magias e aprimoramentos
 - [ ] **T11** — Dados + view com 3 abas (24 feitiços / 19 piromancias / 23 milagres), mercador, alerta de perda definitiva

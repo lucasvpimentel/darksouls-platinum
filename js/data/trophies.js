@@ -59,7 +59,7 @@ export const TROPHIES = [
     'CRÍTICO: não fale com a serpente de Firelink. Mate os Four Kings primeiro, encontre a serpente no Abismo e entre no pacto.', { warn: true, verify: true }),
 
   t('knight', "Knight's Honor", 'colecao', 'prata',
-    'Todas as 50 armas raras: 15 de almas de chefe, 6 de cauda, 2 de pacto, 12 de tesouro e 15 drops raros.', { link: ['#/armas', 'Abrir rastreador'], verify: true }),
+    'Todas as armas raras (~50; o rastreador lista 49 conferidas): almas de chefe (exige 3 almas de Sif, ou seja NG++), caudas, pactos, tesouros e drops.', { link: ['#/armas', 'Abrir rastreador'] }),
   t('sage', 'Wisdom of a Sage', 'colecao', 'prata',
     'Todos os 24 feitiços: compre de Griggs, Dusk of Oolacile e Big Hat Logan, mais os itens achados no mundo.', { link: ['#/magias', 'Abrir rastreador'], verify: true }),
   t('pyro', 'Bond of a Pyromancer', 'colecao', 'prata',

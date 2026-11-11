@@ -81,3 +81,12 @@ test('troféus: 41 no total, contagem por categoria, ids únicos', () => {
   const want = { platina: 1, historia: 9, chefes: 6, finais: 2, pactos: 9, colecao: 4, aprimoramento: 10 };
   for (const g of Object.keys(GROUPS)) assert.equal(by(g), want[g], g);
 });
+
+import { WEAPONS, SIF_IDS } from '../js/data/weapons.js';
+test('armas: 49 conferidas, split por grupo, ids únicos, Sif existe', () => {
+  assert.equal(WEAPONS.length, 49);
+  assert.equal(new Set(WEAPONS.map(w => w.id)).size, 49);
+  const by = g => WEAPONS.filter(w => w.group === g).length;
+  assert.deepEqual([by('boss'), by('cauda'), by('pacto'), by('tesouro'), by('drop')], [15, 6, 2, 9, 17]);
+  for (const id of SIF_IDS) assert.ok(WEAPONS.some(w => w.id === id), id);
+});

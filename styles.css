@@ -142,3 +142,12 @@ li.warn label::before { content: '⚠'; color: var(--ember); margin-top: 1px; }
 .rows .tag.miracle { color: var(--miracle); border-color: var(--miracle); }
 .meta { display: block; color: var(--muted); font-size: 12px; }
 .empty { padding: 18px 0; color: var(--muted); text-align: center; }
+
+.sif { padding: 14px 16px; margin-bottom: 12px; }
+.sif h3 { font-size: 16px; margin-bottom: 4px; }
+.sif p { margin: 4px 0; }
+.sif .note { color: var(--muted); font-size: 13px; }
+.sifrow { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0; }
+.sifrow label { display: grid; gap: 4px; font-size: 13px; color: var(--parch); }
+.sifrow select { background: #0f1114; color: var(--parch); border: 1px solid #3a3426; padding: 6px 8px; }
+.sif .msg { min-height: 0; font: 13px var(--sans); }
