@@ -75,8 +75,8 @@ Revisão humana obrigatória em cada **Checkpoint** antes da próxima fase.
 - [x] Checkpoint 4: contagens 24/19/23/10 conferem; alertas visíveis
 
 ## Fase 5: Builds, nuvem, backup, deploy
-- [ ] **T13** — Export/Import JSON (valida schema, confirma antes de sobrescrever) + reset em 2 etapas
-- [ ] **T14** — Sync Gist: PAT, criar/atualizar Gist privado, Push/Pull, data do último sync, resolução de conflito por `updatedAt`
-- [ ] **T15** — 3 guias de build (Quality/Força, Piromante Tanque, Sorcerer INT)
-- [ ] **T16** — `README.md`: deploy no Pages, token fine-grained, ressalvas de segurança
-- [ ] Checkpoint final: ciclo completo export→reset→import; push→limpar storage→pull; deploy no Pages testado
+- [x] **T13** — Export/Import JSON (valida schema, confirma antes de sobrescrever) + reset em 2 etapas
+- [x] **T14** — Sync Gist: PAT, criar/atualizar Gist privado, Push/Pull, data do último sync, resolução de conflito por `updatedAt`
+- [x] **T15** — 3 guias de build (Quality/Força, Piromante Tanque, Sorcerer INT)
+- [x] **T16** — `README.md`: deploy no Pages, token fine-grained, ressalvas de segurança
+- [x] Checkpoint final (deploy no Pages pendente: ativar em Settings): ciclo completo export→reset→import; push→limpar storage→pull; deploy no Pages testado

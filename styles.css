@@ -215,3 +215,18 @@ svg.focusing .node.on rect:first-child { stroke: var(--gold-hi); }
 .placard .secret { display: none; } .show-secrets .placard .secret { display: list-item; }
 .maprow { padding: 4px 16px 14px; }
 @media (max-width: 600px) { .mapdlg { width: 100vw; height: 100dvh; max-height: none; } }
+
+/* Dados & builds */
+.dsec { padding: 14px 16px; margin-bottom: 14px; display: grid; gap: 10px; }
+.dsec h3 { font-size: 16px; }
+.dsec .field input { background: #0f1114; color: var(--parch); border: 1px solid #3a3426; padding: 9px; font: 14px var(--sans); }
+.btnrow { display: flex; flex-wrap: wrap; gap: 8px; }
+label.btn { display: inline-block; }
+.btn:disabled { opacity: .5; cursor: wait; }
+.danger { border-color: var(--ember); }
+.banner.ok { border-color: var(--gold); background: rgba(197,155,71,.1); }
+.confirm { color: var(--stone); padding: 20px; width: min(420px, 92vw); margin: auto; }
+.confirm::backdrop { background: rgba(0,0,0,.7); }
+.confirm input { width: 100%; margin: 8px 0; padding: 9px; background: #0f1114; color: var(--parch); border: 1px solid var(--ember); }
+.bbody { padding: 10px 18px 16px; } .bbody h4 { margin: 14px 0 4px; color: var(--gold-hi); font-size: 14px; }
+.bbody ul { margin: 0; padding-left: 18px; }

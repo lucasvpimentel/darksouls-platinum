@@ -116,3 +116,31 @@ test('atlas: ids únicos, arestas válidas, áreas da rota existem no atlas', ()
   const linked = new Set(EDGES.flatMap(x => [x.a, x.b]));
   for (const a of AREAS) assert.ok(linked.has(a.id), 'isolado: ' + a.id);
 });
+
+import { findGist, readRemote, pushRemote, FILE } from '../js/sync.js';
+test('sync: cria Gist, atualiza, lê e valida schema (fetch simulado)', async () => {
+  const calls = [];
+  const saved = { schemaVersion: 1, updatedAt: 5, settings: {}, checks: { a: 1 } };
+  const f = async (url, o = {}) => {
+    calls.push([o.method || 'GET', url.replace('https://api.github.com', '')]);
+    const ok = body => ({ ok: true, status: 200, json: async () => body });
+    if (url.endsWith('/gists?per_page=100')) return ok([{ id: 'x1', files: { [FILE]: {} } }]);
+    if (o.method === 'POST') return ok({ id: 'new1' });
+    if (o.method === 'PATCH') return ok({});
+    return ok({ files: { [FILE]: { content: JSON.stringify(saved) } } });
+  };
+  assert.equal(await findGist('t', f), 'x1');
+  assert.equal(await pushRemote('t', '', saved, f), 'new1');
+  assert.equal(await pushRemote('t', 'x1', saved, f), 'x1');
+  assert.equal((await readRemote('t', 'x1', f)).checks.a, 1);
+  assert.deepEqual(calls.map(c => c[0]), ['GET', 'POST', 'PATCH', 'GET']);
+  const bad = async () => ({ ok: false, status: 401 });
+  await assert.rejects(() => findGist('t', bad), /token inválido/);
+});
+
+test('store.replace keep preserva updatedAt; sem keep agenda save', () => {
+  const s = mem();
+  const st = createStore(s, { delay: 10_000, now: () => 999 });
+  st.replace({ schemaVersion: 1, updatedAt: 5, checks: { z: 1 } }, { keep: true });
+  assert.equal(JSON.parse(s.m.get(KEY)).updatedAt, 5);
+});

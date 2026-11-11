@@ -50,16 +50,16 @@ export function createStore(storage, { delay = 400, now = Date.now } = {}) {
 
   let data = load();
 
-  function persist() {
+  function persist(keep) {
     clearTimeout(timer); timer = null;
-    data.updatedAt = now();
+    if (keep !== true) data.updatedAt = now(); // keep: preserva o carimbo (restauração vinda da nuvem/arquivo)
     try { storage.setItem(KEY, JSON.stringify(data)); status('saved', data.updatedAt); }
     catch { status('error'); }
   }
   function touch() {
     status('saving');
     clearTimeout(timer);
-    timer = setTimeout(persist, delay);
+    timer = setTimeout(() => persist(), delay);
     subs.forEach(f => f(data));
   }
 
@@ -68,7 +68,7 @@ export function createStore(storage, { delay = 400, now = Date.now } = {}) {
     isChecked: id => !!data.checks[id],
     set(id, on) { if (on) data.checks[id] = 1; else delete data.checks[id]; touch(); },
     setSetting(k, v) { data.settings[k] = v; touch(); },
-    replace(d) { data = migrate(d); touch(); },
+    replace(d, { keep = false } = {}) { data = migrate(d); subs.forEach(f => f(data)); keep ? persist(true) : touch(); },
     flush() { if (timer) persist(); },
     subscribe(f) { subs.add(f); return () => subs.delete(f); },
     onStatus(f) { statusSubs.add(f); return () => statusSubs.delete(f); },
