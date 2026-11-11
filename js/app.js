@@ -6,6 +6,7 @@ import { TROPHY_IDS } from './data/trophies.js';
 import { renderRoute } from './views/route.js';
 import { renderTrophies } from './views/trophies.js';
 import { renderWeapons } from './views/weapons.js';
+import { renderHome } from './views/home.js';
 import { renderAtlas } from './views/atlas.js';
 import { renderData } from './views/data.js';
 import { renderBuilds } from './views/builds.js';
@@ -14,12 +15,12 @@ import { renderFarm } from './views/farm.js';
 import { renderMagic, renderUpgrades } from './views/magic.js';
 
 const $ = s => document.querySelector(s);
-const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, atlas: renderAtlas, builds: renderBuilds, dados: renderData, farm: renderFarm, lore: renderLore, magias: renderMagic, aprimoramentos: renderUpgrades };
+const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, home: renderHome, atlas: renderAtlas, builds: renderBuilds, dados: renderData, farm: renderFarm, lore: renderLore, magias: renderMagic, aprimoramentos: renderUpgrades };
 
 // localStorage pode lançar (modo privado, dados bloqueados): o store lida com isso e avisa.
 const storage = (() => { try { return window.localStorage; } catch { return { getItem() { throw 1; }, setItem() { throw 1; } }; } })();
 
-let store, current = 'rota', go, started = false;
+let store, current = 'home', go, started = false;
 const hhmm = t => new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
 function paintHeader() {
@@ -72,5 +73,6 @@ function start() {
   go = startRouter(renderView);
 }
 
-initGate(start);
+// login novo sempre abre na Home; sessão já ativa respeita o endereço atual
+initGate(() => { location.hash = '#/home'; start(); });
 if (hasSession()) { $('#gate').hidden = true; start(); }

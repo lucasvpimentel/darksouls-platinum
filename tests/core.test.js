@@ -176,3 +176,6 @@ test('mapas: cada imagem aponta para uma área válida e para a CDN da Steam', (
   }
   assert.equal(Object.keys(MAP_IMAGES).length, 21);
 });
+
+import { ROUTES } from '../js/router.js';
+test('router: home é a primeira rota', () => assert.equal(ROUTES[0], 'home'));
