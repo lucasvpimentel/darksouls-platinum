@@ -10,9 +10,9 @@ const mem = (init = {}) => {
 };
 
 test('auth: credencial certa/errada', async () => {
-  assert.equal(await check('lucasvpimente', '8253'), true);
-  assert.equal(await check('  LucasVPimente ', '8253'), true);
-  assert.equal(await check('lucasvpimente', '0000'), false);
+  assert.equal(await check('lucasvpimentel', '8253'), true);
+  assert.equal(await check('  LucasVPimentel ', '8253'), true);
+  assert.equal(await check('lucasvpimentel', '0000'), false);
   assert.equal(await check('outro', '8253'), false);
   assert.equal((await sha256('x')).length, 64);
 });

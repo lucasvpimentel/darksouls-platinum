@@ -1,7 +1,7 @@
 // Portão de usuário único. ATENÇÃO: é UX, não segurança — hash e salt ficam num arquivo público.
 // ponytail: PIN de 4 dígitos = 10^4 combinações, força-bruta trivial; aceitável para um gate cosmético.
 const SALT = 'dsr-lordvessel-v1';
-const HASH = '1da167f7fa9570ac6dd9fca6e88588113dd3a1e4bb4747a2c7c230900fd944a1';
+const HASH = '811183b728fc67d11a05eb0231a75f7788a138058101187b0dce68ebe13d24d1';
 const SESSION_KEY = 'dsr_session';
 
 export async function sha256(text) {
