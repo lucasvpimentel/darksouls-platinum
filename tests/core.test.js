@@ -167,3 +167,12 @@ test('lore: ids únicos, grafo consistente, tabela das serpentes completa', () =
   assert.equal(REINOS.length, 7);
   assert.ok(SERPENTES.every(r => r.length === 3));
 });
+
+import { MAP_IMAGES } from '../js/data/atlas.js';
+test('mapas: cada imagem aponta para uma área válida e para a CDN da Steam', () => {
+  for (const [id, urls] of Object.entries(MAP_IMAGES)) {
+    assert.ok(id === 'world' || byId[id], id);
+    for (const u of urls) assert.match(u, /^https:\/\/images\.steamusercontent\.com\/ugc\/\d+\/[0-9A-F]{40}\/$/);
+  }
+  assert.equal(Object.keys(MAP_IMAGES).length, 21);
+});

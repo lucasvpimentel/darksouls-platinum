@@ -260,3 +260,6 @@ label.btn { display: inline-block; }
 .graph .nd { cursor: default; transition: opacity .2s; } .graph .nd:focus { outline: none; } .graph .nd:focus rect { stroke-width: 3; }
 .graph svg.focusing .nd:not(.on) { opacity: .2; } .graph svg.focusing .ed:not(.on) { opacity: .08; }
 .graph svg.focusing .ed.on { opacity: 1; stroke: var(--gold-hi); stroke-width: 3; }
+.timg { position: absolute; inset: 0; }
+.mapimg + .mapimg { margin-top: 8px; }
+.credit { padding: 6px 12px 12px; }

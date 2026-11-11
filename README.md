@@ -57,7 +57,7 @@ Segurança do token: fica só no `localStorage` deste navegador, nunca no save n
 
 ## Mapas (imagens)
 
-Veja [assets/maps/README.md](assets/maps/README.md). Sem imagem local, o modal mostra uma planta vetorial com conexões e itens da rota. O link do mapa 3D abre o [dsmap.link](https://dsmap.link/#/ds1) em nova aba.
+Os mapas das áreas vêm do guia da Steam #3094082097 (autor Baba Yaga), carregados direto da CDN da Steam e **não** copiados para o repositório, porque o guia não traz licença. Uma imagem em `assets/maps/<id>.jpg` tem prioridade (ver [assets/maps/README.md](assets/maps/README.md)). Quelaag, Valley of Drakes, Abyss, Firelink Altar e Kiln não têm mapa no guia e mostram a planta vetorial. O link do mapa 3D abre o [dsmap.link](https://dsmap.link/#/ds1) em nova aba.
 
 ## Qualidade dos dados
 

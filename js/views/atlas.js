@@ -1,4 +1,4 @@
-import { AREAS, EDGES, ROUTE_FOR, DSMAP_URL, byId, neighbors } from '../data/atlas.js';
+import { AREAS, EDGES, ROUTE_FOR, DSMAP_URL, MAP_IMAGES, MAP_CREDIT, byId, neighbors } from '../data/atlas.js';
 import { ROUTE } from '../data/route.js';
 import { panzoom } from '../panzoom.js';
 import { esc } from '../util.js';
@@ -6,6 +6,12 @@ import { esc } from '../util.js';
 const W = 130, H = 40, NS = 'http://www.w3.org/2000/svg';
 const dsBtn = (cls = '') => `<a class="btn ${cls}" href="${DSMAP_URL}" target="_blank" rel="noopener noreferrer">🌐 Abrir Mapa 3D Interativo de Lordran</a>`;
 const CAPTION = 'Visualizador 3D em tempo real com modelos de colisão e posicionamento espacial de Lordran (dsmap.link, site externo).';
+
+/* ---------- Carregamento de imagens (local primeiro, depois Steam) ---------- */
+const tryLoad = src => new Promise(res => { const i = new Image(); i.referrerPolicy = 'no-referrer'; i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
+const firstOf = async urls => { for (const u of urls) { const i = await tryLoad(u); if (i) return i; } return null; };
+const localUrls = id => [`assets/maps/${id}.jpg`, `assets/maps/${id}.png`];
+const WORLD = { id: 'world', name: 'Mapa-múndi de Lordran' };
 
 /* ---------- Diagrama SVG ---------- */
 function clip(from, to) { // ponto na borda do retângulo de `from` na direção de `to`
@@ -66,11 +72,15 @@ function mountDiagram(host, store) {
 
 /* ---------- Grade e matriz ---------- */
 function mountGrid(host) {
-  host.innerHTML = `<div class="thumbs">${AREAS.map(a => `
+  host.innerHTML = `<div class="thumbs">${[WORLD, ...AREAS].map(a => `
     <button class="thumb panel" data-open="${a.id}">
-      <img loading="lazy" alt="" src="assets/maps/${a.id}.jpg" onerror="this.remove()">
+      <span class="timg" data-img="${a.id}"></span>
       <span class="emb" aria-hidden="true">${a.dead ? '⛔' : '🗺️'}</span><b>${esc(a.name)}</b>
     </button>`).join('')}</div>`;
+  host.querySelectorAll('[data-img]').forEach(async sp => {
+    const id = sp.dataset.img, img = await firstOf([...localUrls(id), ...(MAP_IMAGES[id] || []).slice(0, 1)]);
+    if (img) { img.alt = ''; img.loading = 'lazy'; sp.replaceWith(img); }
+  });
 }
 
 function mountMatrix(host) {
@@ -146,25 +156,28 @@ function placard(id, store) {
     ${area.dead ? '<p class="deadtag">⛔ Beco sem saída</p>' : ''}${area.gated ? '<p class="deadtag">Exige o Lordvessel</p>' : ''}
     <h4>Conexões</h4><ul>${neighbors(id).map(x => `<li><b>${esc(x.other.name)}</b> — ${esc(x.n)}</li>`).join('')}</ul>
     ${items ? `<h4>Rota</h4><ul class="rl">${items}</ul><p class="note">Itens de corte de cauda e variantes são “segredos” (botão no topo).</p>` : ''}
-    <p class="note">Sem imagem local: coloque <code>assets/maps/${id}.jpg</code> para exibir o mapa cartográfico aqui.</p></div>`;
+    <p class="note">Sem mapa disponível para esta área. Para exibir um, coloque <code>assets/maps/${id}.jpg</code>.</p></div>`;
 }
 
-export function openMap(id, store) {
-  if (!byId[id]) return;
-  const d = ensureDialog(), area = byId[id];
+let openToken = 0;
+export async function openMap(id, store) {
+  const area = id === 'world' ? WORLD : byId[id];
+  if (!area) return;
+  const d = ensureDialog(), token = ++openToken;
   d.querySelector('#mt').textContent = area.name;
   const sec = d.querySelector('#msec'); sec.checked = !store.get().settings.spoilerFree;
   d.classList.toggle('show-secrets', sec.checked);
   const host = d.querySelector('#mpz');
-  host.innerHTML = `<img class="mapimg" alt="Mapa de ${esc(area.name)}" src="assets/maps/${id}.jpg">${placard(id, store)}`;
-  const img = host.querySelector('img'), card = host.querySelector('.placard');
-  card.hidden = true;
-  let triedPng = false;
-  img.addEventListener('load', () => { card.hidden = true; });
-  img.addEventListener('error', () => {
-    if (!triedPng) { triedPng = true; img.src = `assets/maps/${id}.png`; return; }
-    img.remove(); card.hidden = false; // fallback: planta vetorial com instruções da área
-  });
+  host.innerHTML = '<p class="note" style="padding:20px">Carregando mapa…</p>';
   pz.reset();
   if (!d.open) d.showModal();
+
+  const local = await firstOf(localUrls(id));
+  const remote = local ? [] : (await Promise.all((MAP_IMAGES[id] || []).map(tryLoad))).filter(Boolean);
+  if (token !== openToken) return; // outro mapa foi aberto enquanto carregava
+  const imgs = local ? [local] : remote;
+  host.innerHTML = '';
+  imgs.forEach(i => { i.className = 'mapimg'; i.alt = `Mapa de ${area.name}`; host.append(i); });
+  if (remote.length) host.insertAdjacentHTML('beforeend', `<p class="note credit">${esc(MAP_CREDIT)}</p>`);
+  if (!imgs.length && id !== 'world') host.insertAdjacentHTML('beforeend', placard(id, store));
 }
