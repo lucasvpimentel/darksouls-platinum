@@ -179,3 +179,13 @@ test('mapas: cada imagem aponta para uma área válida e para a CDN da Steam', (
 
 import { ROUTES } from '../js/router.js';
 test('router: home é a primeira rota', () => assert.equal(ROUTES[0], 'home'));
+
+import { execFileSync } from 'node:child_process';
+import { readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+const jsFiles = d => readdirSync(d).flatMap(f => (statSync(join(d, f)).isDirectory() ? jsFiles(join(d, f)) : f.endsWith('.js') ? [join(d, f)] : []));
+test('todos os módulos JS têm sintaxe válida (app.js quebrado = login morto)', () => {
+  const files = jsFiles('js');
+  assert.ok(files.length > 20);
+  for (const f of files) execFileSync(process.execPath, ['--check', f], { stdio: 'pipe' });
+});

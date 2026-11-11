@@ -20,6 +20,19 @@ const LINKS = [
   ['#/dados', '☁️', 'Dados & Nuvem', 'Backup e sincronização'],
 ];
 
+const TIPS = [
+  'Corte a cauda do chefe antes de matá-lo: depois não dá mais para voltar atrás.',
+  'Sif tem uma alma por ciclo e três armas dependem dela: a Platina exige chegar ao NG++.',
+  'Compre todos os feitiços de Griggs e Dusk antes de eles partirem: não há segunda chance.',
+  'Quelana deixa de vender quando é morta. Compre tudo antes de matar o chefe do caos.',
+  'O Darkwraith exige não depositar o Lordvessel antes de vencer os Four Kings.',
+  "Todas as armas do Knight's Honor precisam estar no mesmo personagem.",
+  'Faça o pacto Gravelord Servant antes de enfrentar Nito.',
+  'Use Homeward Bone para reiniciar o ciclo de farm em cada fogueira.',
+];
+const tip = TIPS[Math.floor(Date.now() / 864e5) % TIPS.length];
+const EMBERS = Array.from({ length: 9 }, (_, i) => `<i style="--x:${8 + i * 10}%;--d:${(i * 0.7) % 4}s;--s:${3.2 + (i % 3)}s"></i>`).join('');
+const FIRE = `<svg viewBox="0 0 64 64" class="fire" aria-hidden="true"><path d="M32 6c4 9 12 14 12 25 0 7-5 12-12 12s-12-5-12-12c0-5 2-8 5-10 0 5 2 7 5 7-1-8 0-14 2-22z" fill="#c59b47"/><path d="M32 22c3 5 6 7 6 13 0 4-3 6-6 6s-6-2-6-6c0-4 3-6 6-13z" fill="#dfb76c"/><path d="M32 36v24M25 56h14" stroke="#ede6d4" stroke-width="3.5" stroke-linecap="round"/></svg>`;
 const bar = (done, total) => `<div class="bar mini"><i style="width:${total ? (done / total) * 100 : 0}%"></i></div>`;
 
 export function renderHome(el, store) {
@@ -46,11 +59,23 @@ export function renderHome(el, store) {
 
   el.innerHTML = `
     <section class="hero panel">
-      <p class="eyebrow">Bem-vindo de volta, Escolhido</p>
-      <h2>${plat.pct === 100 ? 'A Platina é sua.' : 'A jornada continua.'}</h2>
-      <div class="bigprog"><div class="bar"><i style="width:${plat.pct}%"></i></div><b>${plat.pct}%</b></div>
-      <p class="note">${plat.done}/${plat.total} troféus conquistados${plat.pct === 100 ? ' — The Dark Soul desbloqueada.' : ' para a Platina.'}</p>
+      <div class="embers" aria-hidden="true">${EMBERS}</div>
+      <div class="herofire">${FIRE}</div>
+      <div class="herotext">
+        <p class="eyebrow">Bem-vindo de volta, Escolhido</p>
+        <h2>${plat.pct === 100 ? 'A Platina é sua.' : plat.done === 0 ? 'A fogueira espera por você.' : 'A jornada continua.'}</h2>
+        <p class="note">${plat.done}/${plat.total} troféus conquistados${plat.pct === 100 ? ' — The Dark Soul desbloqueada.' : ' para a Platina.'}</p>
+        ${plat.done === 0 ? '<p class="starthint">Nada marcado ainda. Comece pela <a href="#/rota">Rota de Mapas</a> e vá marcando conforme avança: tudo é salvo sozinho.</p>' : ''}
+      </div>
+      <div class="ring" style="--p:${plat.pct}" role="img" aria-label="${plat.pct}% da Platina"><b>${plat.pct}%</b><small>Platina</small></div>
     </section>
+
+    <div class="statrow">
+      ${[['Troféus', plat.done, plat.total], ['Rota', others[0][1].done, others[0][1].total], ['Armas raras', others[1][1].done, others[1][1].total], ['Magias', others[2][1].done, others[2][1].total]]
+        .map(([l, d, t]) => `<div class="panel stat"><b>${d}<small>/${t}</small></b><span>${l}</span></div>`).join('')}
+    </div>
+
+    <p class="tip panel"><span aria-hidden="true">🔥</span> <b>Dica do dia:</b> ${esc(tip)}</p>
 
     <div class="grid2 homegrid">
       <section class="panel lore">
@@ -73,7 +98,7 @@ export function renderHome(el, store) {
       </section>
     </div>
 
-    <h3 class="sec">Seções</h3>
+    <h3 class="sec orn"><span>Seções</span></h3>
     <div class="homelinks">${LINKS.map(([h, i, t, d]) => `<a class="panel hl" href="${h}"><span class="hi" aria-hidden="true">${i}</span><b>${esc(t)}</b><small>${esc(d)}</small></a>`).join('')}</div>`;
 
   el.onclick = e => {
