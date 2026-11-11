@@ -59,9 +59,9 @@ Revisão humana obrigatória em cada **Checkpoint** antes da próxima fase.
 - [ ] **Humano revisa** visual, rota de mapas e análise de persistência → aprova Fase 2
 
 ## Fase 2: Matriz das 41 conquistas
-- [ ] **T6** — Dados `trophies.js` (41, 7 categorias, `safe`/`full`, `// VERIFY` em dúvidas) + teste de contagem = 41 e por categoria (1/9/6/2/9/4/10)
-- [ ] **T7** — View: tabela filtrável (categoria, tipo, status) + busca + checkbox; % da platina no header (platina auto = 40/40)
-- [ ] Checkpoint 2: contagens batem, filtros combinam, % correto, reload mantém
+- [x] **T6** — Dados `trophies.js` (41, 7 categorias, `safe`/`full`, `// VERIFY` em dúvidas) + teste de contagem = 41 e por categoria (1/9/6/2/9/4/10)
+- [x] **T7** — View: tabela filtrável (categoria, tipo, status) + busca + checkbox; % da platina no header (platina auto = 40/40)
+- [x] Checkpoint 2: contagens batem, filtros combinam, % correto, reload mantém
 
 ## Fase 3: Armas raras (Knight's Honor — 50)
 - [ ] **T8** — Dados `weapons.js` (50: 15 almas, 6 caudas, 2 pactos, 12 tesouros, 15 drops) + teste de contagens

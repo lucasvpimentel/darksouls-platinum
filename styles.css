@@ -120,3 +120,25 @@ li.warn label::before { content: '⚠'; color: var(--ember); margin-top: 1px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Listas filtráveis */
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 14px; margin-bottom: 12px; }
+.tools input, .tools select { background: #0f1114; color: var(--parch); border: 1px solid #3a3426; padding: 8px 10px; font: 14px var(--sans); }
+.tools input { flex: 1 1 200px; }
+.tools .cnt { margin-left: auto; font-size: 12px; color: var(--muted); }
+.rows { list-style: none; margin: 0; padding: 6px 16px; }
+.rows li + li { border-top: 1px solid #23252a; }
+.rows li label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
+.rows li input { margin-top: 4px; accent-color: var(--gold); width: 16px; height: 16px; flex: none; }
+.rows li input:checked ~ .txt { color: var(--muted); }
+.rows li .txt b { color: var(--parch); font-weight: 600; margin-right: 6px; }
+.rows li.warn label::before { content: '⚠'; color: var(--ember); order: -1; margin-top: 1px; }
+.rows .tag.platina { color: var(--parch); border-color: var(--parch); }
+.rows .tag.ouro { color: var(--gold-hi); border-color: var(--gold); }
+.rows .tag.prata { color: #c9ccd2; border-color: #8b8f98; }
+.rows .tag.bronze { color: #c98a55; border-color: #8a5a35; }
+.rows .tag.sorc { color: var(--sorc); border-color: var(--sorc); }
+.rows .tag.pyro { color: var(--pyro); border-color: var(--pyro); }
+.rows .tag.miracle { color: var(--miracle); border-color: var(--miracle); }
+.meta { display: block; color: var(--muted); font-size: 12px; }
+.empty { padding: 18px 0; color: var(--muted); text-align: center; }

@@ -71,3 +71,13 @@ test('rota: ids únicos, safe obrigatório, tipos válidos', () => {
     assert.ok(types.has(it.type), it.id);
   }
 });
+
+import { TROPHIES, TROPHY_IDS, GROUPS } from '../js/data/trophies.js';
+test('troféus: 41 no total, contagem por categoria, ids únicos', () => {
+  assert.equal(TROPHIES.length, 41);
+  assert.equal(TROPHY_IDS.length, 40);
+  assert.equal(new Set(TROPHIES.map(t => t.id)).size, 41);
+  const by = g => TROPHIES.filter(t => t.group === g).length;
+  const want = { platina: 1, historia: 9, chefes: 6, finais: 2, pactos: 9, colecao: 4, aprimoramento: 10 };
+  for (const g of Object.keys(GROUPS)) assert.equal(by(g), want[g], g);
+});

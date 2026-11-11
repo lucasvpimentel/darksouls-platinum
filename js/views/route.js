@@ -1,8 +1,8 @@
 import { ROUTE } from '../data/route.js';
+import { esc } from '../util.js';
 
 const TYPE = { boss: 'Chefe', tail: 'Cauda', key: 'Chave', covenant: 'Pacto', npc: 'NPC', item: 'Item' };
 const closed = new Set(); // cards recolhidos sobrevivem a re-render
-const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function count(det) {
   const boxes = det.querySelectorAll('input[data-id]');

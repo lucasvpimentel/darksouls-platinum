@@ -2,14 +2,17 @@ import { hasSession, endSession } from './auth.js';
 import { initGate, showGate } from './gate.js';
 import { createStore, progress } from './store.js';
 import { startRouter } from './router.js';
-import { ROUTE_IDS } from './data/route.js';
+import { TROPHY_IDS } from './data/trophies.js';
 import { renderRoute } from './views/route.js';
+import { renderTrophies } from './views/trophies.js';
 
 const $ = s => document.querySelector(s);
 const SOON = {
-  conquistas: ['Conquistas', 2], armas: ['Armas Raras', 3], magias: ['Magias', 4],
+  armas: ['Armas Raras', 3], magias: ['Magias', 4],
   aprimoramentos: ['Aprimoramentos', 4], builds: ['Builds', 5], dados: ['Dados & Nuvem', 5],
 };
+
+const VIEWS = { rota: renderRoute, conquistas: renderTrophies };
 
 // localStorage pode lançar (modo privado, dados bloqueados): o store lida com isso e avisa.
 const storage = (() => { try { return window.localStorage; } catch { return { getItem() { throw 1; }, setItem() { throw 1; } }; } })();
@@ -19,7 +22,7 @@ const hhmm = t => new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', min
 
 function paintHeader() {
   const d = store.get();
-  const p = progress(d.checks, ROUTE_IDS); // Fase 2 troca para os 41 troféus
+  const p = progress(d.checks, TROPHY_IDS); // % da Platina = 40 troféus marcáveis
   $('#bar').style.width = p.pct + '%';
   $('#pct').textContent = p.pct + '%';
   $('.bar').setAttribute('aria-valuenow', p.pct);
@@ -35,7 +38,7 @@ function renderView(route) {
   });
   const el = $('#view');
   el.onchange = null;
-  if (route === 'rota') return renderRoute(el, store);
+  if (VIEWS[route]) return VIEWS[route](el, store);
   const [name, phase] = SOON[route];
   el.innerHTML = `<div class="panel soon"><h2>${name}</h2><p class="lead">Chega na Fase ${phase}.</p></div>`;
 }
