@@ -90,3 +90,9 @@ test('armas: 49 conferidas, split por grupo, ids únicos, Sif existe', () => {
   assert.deepEqual([by('boss'), by('cauda'), by('pacto'), by('tesouro'), by('drop')], [15, 6, 2, 9, 17]);
   for (const id of SIF_IDS) assert.ok(WEAPONS.some(w => w.id === id), id);
 });
+
+import { FARM } from '../js/data/farm.js';
+test('farm: ids únicos, todo item marcado verify', () => {
+  assert.equal(new Set(FARM.map(f => f.id)).size, FARM.length);
+  assert.ok(FARM.every(f => f.verify && f.safe));
+});

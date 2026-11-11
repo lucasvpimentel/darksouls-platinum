@@ -6,6 +6,7 @@ import { TROPHY_IDS } from './data/trophies.js';
 import { renderRoute } from './views/route.js';
 import { renderTrophies } from './views/trophies.js';
 import { renderWeapons } from './views/weapons.js';
+import { renderFarm } from './views/farm.js';
 
 const $ = s => document.querySelector(s);
 const SOON = {
@@ -13,7 +14,7 @@ const SOON = {
   aprimoramentos: ['Aprimoramentos', 4], builds: ['Builds', 5], dados: ['Dados & Nuvem', 5],
 };
 
-const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons };
+const VIEWS = { rota: renderRoute, conquistas: renderTrophies, armas: renderWeapons, farm: renderFarm };
 
 // localStorage pode lançar (modo privado, dados bloqueados): o store lida com isso e avisa.
 const storage = (() => { try { return window.localStorage; } catch { return { getItem() { throw 1; }, setItem() { throw 1; } }; } })();
