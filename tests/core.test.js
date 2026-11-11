@@ -157,3 +157,13 @@ test('simulador: GiantDad fica em Fast Roll com 77 de poise; thresholds e overbu
   assert.ok(calc({ ...PRESETS.giantdad, end: g.needFast }).pct <= 25);
   assert.ok(calc({ ...PRESETS.giantdad, end: g.needFast - 1 }).pct > 25 || g.needFast === 1);
 });
+
+import { TIMELINE, ORIGENS, REINOS, TRAGEDIAS, NODES, LINKS, SERPENTES } from '../js/data/lore.js';
+test('lore: ids únicos, grafo consistente, tabela das serpentes completa', () => {
+  const ids = [...TIMELINE, ...ORIGENS, ...REINOS, ...TRAGEDIAS].map(x => x.id);
+  assert.equal(new Set(ids).size, ids.length);
+  const n = new Set(NODES.map(x => x.id));
+  for (const [a, b] of LINKS) assert.ok(n.has(a) && n.has(b), `${a}-${b}`);
+  assert.equal(REINOS.length, 7);
+  assert.ok(SERPENTES.every(r => r.length === 3));
+});

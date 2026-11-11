@@ -242,3 +242,21 @@ label.btn { display: inline-block; }
 .badge.bad { color: #e0785b; border-color: var(--ember); } .badge.dead { color: var(--parch); border-color: var(--parch); background: #3a1a14; }
 .simout dl { display: grid; grid-template-columns: auto auto; gap: 4px 18px; margin: 0; }
 .simout dt { color: var(--muted); } .simout dd { margin: 0; color: var(--parch); font-variant-numeric: tabular-nums; }
+
+/* Lore */
+.sec { margin: 18px 0 8px; font-size: 17px; color: var(--gold-hi); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.lore { padding: 14px 16px; } .lore h3 { font-size: 16px; margin-bottom: 6px; } .lore p { margin: 4px 0; }
+.theory { font-size: 11px; color: var(--sorc); border-bottom: 1px dotted var(--sorc); cursor: help; }
+.gate-sp { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; padding: 6px 0; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--gold); }
+.timeline li { position: relative; padding: 0 0 14px 16px; }
+.timeline li::before { content: ''; position: absolute; left: -26px; top: 6px; width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); box-shadow: var(--glow); }
+.timeline b { color: var(--parch); font-family: var(--serif); display: block; }
+.graph { padding: 8px; } .graph svg { width: 100%; height: auto; display: block; }
+.graph .ed { stroke: var(--gold); opacity: .4; stroke-width: 1.5; transition: opacity .2s; }
+.graph .nd rect { fill: var(--surface); stroke: var(--gold); } .graph .nd text { fill: var(--parch); font: 600 12px var(--sans); pointer-events: none; }
+.graph .nd.serp rect { stroke: var(--ember); } .graph .nd.cav rect { stroke: #8b8f98; } .graph .nd.lord rect { stroke: var(--sorc); }
+.graph .nd { cursor: default; transition: opacity .2s; } .graph .nd:focus { outline: none; } .graph .nd:focus rect { stroke-width: 3; }
+.graph svg.focusing .nd:not(.on) { opacity: .2; } .graph svg.focusing .ed:not(.on) { opacity: .08; }
+.graph svg.focusing .ed.on { opacity: 1; stroke: var(--gold-hi); stroke-width: 3; }
