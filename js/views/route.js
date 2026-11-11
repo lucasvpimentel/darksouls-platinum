@@ -1,5 +1,6 @@
 import { ROUTE } from '../data/route.js';
 import { esc } from '../util.js';
+import { openMap } from './atlas.js';
 
 const TYPE = { boss: 'Chefe', tail: 'Cauda', key: 'Chave', covenant: 'Pacto', npc: 'NPC', item: 'Item' };
 const closed = new Set(); // cards recolhidos sobrevivem a re-render
@@ -26,12 +27,14 @@ export function renderRoute(el, store) {
             <span class="txt">${esc(text(it))}${it.verify ? ' <span class="vf" title="Dado ainda não conferido contra o jogo">verificar</span>' : ''}</span>
           </label></li>`).join('')}
         </ul>
+        <div class="maprow"><button class="btn" type="button" data-map="${a.id}">🗺️ Abrir Mapa</button></div>
       </details>`).join('')}`;
 
   el.querySelectorAll('details').forEach(d => {
     count(d);
     d.addEventListener('toggle', () => (d.open ? closed.delete(d.id.slice(5)) : closed.add(d.id.slice(5))));
   });
+  el.onclick = e => { const b = e.target.closest('[data-map]'); if (b) openMap(b.dataset.map, store); };
   el.onchange = e => {
     const cb = e.target.closest('input[data-id]');
     if (!cb) return;

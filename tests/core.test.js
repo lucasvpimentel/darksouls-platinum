@@ -106,3 +106,13 @@ test('magias 24/19/23, ids únicos; aprimoramentos 10 ligados aos troféus', () 
   assert.equal(UPGRADES.length, 10);
   for (const u of UPGRADES) assert.ok(TROPHIES.some(t => t.id === u.id), u.id);
 });
+
+import { AREAS, EDGES, ROUTE_FOR, byId } from '../js/data/atlas.js';
+test('atlas: ids únicos, arestas válidas, áreas da rota existem no atlas', () => {
+  assert.equal(new Set(AREAS.map(a => a.id)).size, AREAS.length);
+  for (const x of EDGES) assert.ok(byId[x.a] && byId[x.b], `${x.a}-${x.b}`);
+  for (const r of ROUTE) assert.ok(byId[r.id], r.id);
+  for (const v of Object.values(ROUTE_FOR)) assert.ok(ROUTE.some(r => r.id === v), v);
+  const linked = new Set(EDGES.flatMap(x => [x.a, x.b]));
+  for (const a of AREAS) assert.ok(linked.has(a.id), 'isolado: ' + a.id);
+});
