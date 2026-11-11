@@ -62,7 +62,8 @@ Veja [assets/maps/README.md](assets/maps/README.md). Sem imagem local, o modal m
 ## Qualidade dos dados
 
 - **Conferidos** contra guias de conquistas da Fextralife: armas raras (49 itens), magias (24/19/23).
-- **Do briefing do projeto, ainda não conferidos** (marcados **verificar** na interface): rota de mapas, parte dos troféus de pacto/chefe, matriz de aprimoramentos, aba Farm, matriz de conexões do Atlas, atributos das builds.
+- **Conferidos depois**: pactos, Darkwraith e requisitos de aprimoramento (Fextralife); pesos e poise do simulador de carga.
+- **Do briefing do projeto, ainda não conferidos** (marcados **verificar**): locais das brasas, aba Farm, matriz de conexões do Atlas, atributos e itens das builds/memebuilds.
 - O briefing falava em 50 armas raras; as fontes conferidas listam 49 (ver comentário em `js/data/weapons.js`).
 
 ## Estrutura

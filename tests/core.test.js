@@ -144,3 +144,16 @@ test('store.replace keep preserva updatedAt; sem keep agenda save', () => {
   st.replace({ schemaVersion: 1, updatedAt: 5, checks: { z: 1 } }, { keep: true });
   assert.equal(JSON.parse(s.m.get(KEY)).updatedAt, 5);
 });
+
+import { calc, PRESETS } from '../js/sim.js';
+test('simulador: GiantDad fica em Fast Roll com 77 de poise; thresholds e overburden', () => {
+  const g = calc(PRESETS.giantdad);
+  assert.equal(g.poise, 77);
+  assert.equal(g.cat, 'fast');
+  assert.ok(Math.abs(g.max - 106 * 1.5 * 1.2 * 1.05) < 1e-9);
+  assert.equal(calc({ ...PRESETS.giantdad, havel: false, fap: false, helm: '', end: 1 }).cat, 'over');
+  const q = calc({ ...PRESETS.quality, end: 40, havel: false });
+  assert.equal(q.cat, calc({ ...PRESETS.quality, end: 40, havel: false }).cat);
+  assert.ok(calc({ ...PRESETS.giantdad, end: g.needFast }).pct <= 25);
+  assert.ok(calc({ ...PRESETS.giantdad, end: g.needFast - 1 }).pct > 25 || g.needFast === 1);
+});

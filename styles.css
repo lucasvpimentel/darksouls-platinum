@@ -230,3 +230,15 @@ label.btn { display: inline-block; }
 .confirm input { width: 100%; margin: 8px 0; padding: 9px; background: #0f1114; color: var(--parch); border: 1px solid var(--ember); }
 .bbody { padding: 10px 18px 16px; } .bbody h4 { margin: 14px 0 4px; color: var(--gold-hi); font-size: 14px; }
 .bbody ul { margin: 0; padding-left: 18px; }
+
+/* Simulador */
+.sim { padding: 16px; display: grid; gap: 14px; }
+.simgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; align-items: end; }
+.simgrid select, .simgrid input[type=number] { background: #0f1114; color: var(--parch); border: 1px solid #3a3426; padding: 8px; font: 14px var(--sans); width: 100%; }
+.simgrid .span { grid-column: 1 / -1; } .simgrid input[type=range] { width: 100%; accent-color: var(--gold); }
+.simout { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.badge { padding: 10px 16px; font: 700 16px var(--serif); border: 1px solid; letter-spacing: .05em; }
+.badge.ok { color: #7fd48a; border-color: #4c9a58; } .badge.mid { color: #e6c35c; border-color: #a98c2e; }
+.badge.bad { color: #e0785b; border-color: var(--ember); } .badge.dead { color: var(--parch); border-color: var(--parch); background: #3a1a14; }
+.simout dl { display: grid; grid-template-columns: auto auto; gap: 4px 18px; margin: 0; }
+.simout dt { color: var(--muted); } .simout dd { margin: 0; color: var(--parch); font-variant-numeric: tabular-nums; }
