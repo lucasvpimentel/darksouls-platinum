@@ -1,0 +1,12 @@
+export const ROUTES = ['rota', 'conquistas', 'armas', 'magias', 'aprimoramentos', 'builds', 'dados'];
+
+export function startRouter(render) {
+  const go = () => {
+    const r = location.hash.replace(/^#\//, '');
+    if (!ROUTES.includes(r)) { location.replace('#/rota'); return; }
+    render(r);
+  };
+  addEventListener('hashchange', go);
+  go();
+  return go;
+}

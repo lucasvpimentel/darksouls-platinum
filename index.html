@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c0e">
+<title>Lordran — Guia de Platina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Portão -->
+<section id="gate" class="gate" aria-labelledby="gate-title">
+  <div class="fog" aria-hidden="true"></div>
+  <form id="gate-form" class="panel gate-card" novalidate>
+    <h1 id="gate-title">Selo do Lordvessel</h1>
+    <p class="sub">Acesso restrito ao Escolhido</p>
+
+    <label class="field">Usuário
+      <input id="user" name="user" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+    </label>
+
+    <div class="field">
+      <span id="pin-label">PIN</span>
+      <div class="pin" id="pin-box">
+        <input id="pin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]*"
+               autocomplete="current-password" aria-labelledby="pin-label" aria-describedby="gate-msg">
+        <span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span>
+      </div>
+    </div>
+
+    <div class="keypad" aria-label="Teclado numérico">
+      <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+      <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+      <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+      <button type="button" data-k="del" aria-label="Apagar">⌫</button><button type="button" data-k="0">0</button><button type="button" data-k="ok" aria-label="Entrar">⏎</button>
+    </div>
+
+    <label class="check"><input type="checkbox" id="remember"> Permanecer Conectado</label>
+    <button type="submit" class="btn primary">Acender a Fogueira</button>
+    <p id="gate-msg" class="msg" role="alert"></p>
+  </form>
+</section>
+
+<!-- Aplicação -->
+<div id="app" hidden>
+  <header class="top panel">
+    <div class="brand"><h1>Lordran</h1><span>Guia de Platina</span></div>
+    <div class="prog" title="Progresso geral">
+      <div class="bar" role="progressbar" aria-label="Progresso geral" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bar"></i></div>
+      <b id="pct">0%</b>
+    </div>
+    <span id="save" class="save" role="status" aria-live="polite"></span>
+    <button id="spoil" class="btn" role="switch" aria-checked="true">Modo Sem Spoilers: <b>ATIVO</b></button>
+    <button id="logout" class="btn" title="Bloquear acesso">Apagar Fogueira</button>
+  </header>
+
+  <nav id="nav" class="nav" aria-label="Seções">
+    <a href="#/rota">Rota de Mapas</a>
+    <a href="#/conquistas">Conquistas</a>
+    <a href="#/armas">Armas Raras</a>
+    <a href="#/magias">Magias</a>
+    <a href="#/aprimoramentos">Aprimoramentos</a>
+    <a href="#/builds">Builds</a>
+    <a href="#/dados">Dados &amp; Nuvem</a>
+  </nav>
+
+  <div id="banner" class="banner" role="alert" hidden></div>
+  <main id="view" tabindex="-1"></main>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
