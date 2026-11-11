@@ -12,17 +12,17 @@ export const ROUTE = [
   ]},
   { id: 'firelink', area: 'Firelink Shrine', items: [
     i('fl-petrus', 'covenant', 'Way of White: fale com Petrus e aceite o juramento. (Troféu de pacto)'),
-    i('fl-serpent', 'npc', 'NÃO aceite o convite da serpente de Firelink antes de vencer os Four Kings.', { warn: true }),
+    i('fl-serpent', 'npc', 'NÃO deposite o Lordvessel no altar de Firelink antes de vencer os Four Kings (guarde-o no inventário).', { warn: true }),
   ]},
   { id: 'burg', area: 'Undead Burg e Undead Parish', items: [
     i('burg-taurus', 'boss', 'Derrote o Taurus Demon na ponte.'),
     i('burg-capra', 'boss', 'Derrote o Capra Demon no Lower Undead Burg.'),
     i('parish-tail', 'tail', 'Bell Gargoyles: corte a cauda de um gárgula antes de matá-lo.', { warn: true }),
     i('parish-bell1', 'boss', 'Derrote os Bell Gargoyles no telhado e toque o primeiro sino. (Troféu Ring the Bell)'),
-    i('parish-sunlight', 'covenant', 'Warrior of Sunlight: interaja com a estátua na sacada (25 de Fé, −5 por chefe vencido em co-op).', { verify: true }),
+    i('parish-sunlight', 'covenant', 'Warrior of Sunlight: reze no altar quebrado. Exige 25 de Fé OU ter ajudado ao menos 4 jogadores com o white soapstone. (Local divergente entre fontes: conferir.)', { verify: true }),
   ]},
   { id: 'darkroot', area: 'Darkroot Garden', items: [
-    i('dr-hunter', 'covenant', 'Forest Hunter: abra a porta com a Crest of Artorias e fale com Alvina na janela da ruína.', { verify: true }),
+    i('dr-hunter', 'covenant', 'Forest Hunter: compre a Crest of Artorias de Andre (ou siga pela Darkroot Basin), abra a porta e responda "sim" às duas perguntas de Alvina.'),
     i('dr-sif', 'boss', 'Derrote o grande lobo e recolha o anel de andar no Abismo. (Troféu Art of Abysswalking)'),
     i('dr-ember', 'item', 'Pegue a Enchanted Ember e a Divine Ember.', { verify: true }),
   ]},
@@ -33,7 +33,7 @@ export const ROUTE = [
   ]},
   { id: 'quelaag', area: "Quelaag's Domain", items: [
     i('q-boss', 'boss', 'Derrote a criatura do domínio e toque o segundo sino. (Troféu Ring the Bell)'),
-    i('q-chaos', 'covenant', 'Chaos Servant: quebre a parede ilusória no andar inferior, fale com Eingyi e jure fidelidade.', { verify: true }),
+    i('q-chaos', 'covenant', 'Chaos Servant: depois de Quelaag, desça a escada além do sino, quebre a parede ilusória, fale com Eingyi e escolha "Enter Covenant" com a mulher junto à fogueira.'),
   ]},
   { id: 'sens', area: "Sen's Fortress", items: [
     i('sens-golem', 'boss', 'Derrote o Iron Golem e toque o círculo dourado. (Troféu Reach Anor Londo)'),
@@ -41,7 +41,7 @@ export const ROUTE = [
   { id: 'anor', area: 'Anor Londo', items: [
     i('anor-os', 'boss', 'Derrote a dupla de cavaleiros no grande salão e fale com a divindade no altar superior. (Troféu Lordvessel)'),
     i('anor-pg', 'covenant', "Princess's Guard: ajoelhe-se e faça o juramento após receber o Lordvessel."),
-    i('anor-darkmoon', 'covenant', 'Blade of the Darkmoon: equipe o Darkmoon Seance Ring no subsolo e ajoelhe-se diante do tapete (não atravesse a névoa).', { verify: true }),
+    i('anor-darkmoon', 'covenant', 'Blade of the Darkmoon: pegue o Darkmoon Seance Ring nas Catacombs, equipe-o e ajoelhe-se na área da névoa abaixo da fogueira de Anor Londo (não atravesse).'),
     i('anor-gwyn', 'boss', 'Derrote o chefe da cripta. Faça o pacto da lua ANTES da luta.', { warn: true, verify: true }),
   ]},
   { id: 'painted', area: 'Painted World of Ariamis', items: [
@@ -49,8 +49,8 @@ export const ROUTE = [
     i('pw-boss', 'boss', 'Derrote a guardiã.', { full: 'Derrote Crossbreed Priscilla.' }),
   ]},
   { id: 'catacombs', area: 'Catacombs', items: [
-    i('cat-pinwheel', 'boss', 'Derrote Pinwheel. (Troféu Rite of Kindling)', { verify: true }),
-    i('cat-gravelord', 'covenant', 'Gravelord Servant: entre no caixão aberto perto do Titanite Demon com um Eye of Death. ANTES de enfrentar Nito.', { warn: true, verify: true }),
+    i('cat-pinwheel', 'boss', 'Derrote Pinwheel. (Troféu Rite of Kindling)'),
+    i('cat-gravelord', 'covenant', 'Gravelord Servant: entre no caixão nas Catacombs e espere 10–15 s; depois reze a Nito e aceite. Faça ANTES de matá-lo.', { warn: true }),
   ]},
   { id: 'tomb', area: 'Tomb of the Giants', items: [
     i('tomb-nito', 'boss', 'Derrote Gravelord Nito no fundo da tumba.'),
@@ -58,15 +58,15 @@ export const ROUTE = [
   { id: 'newlondo', area: 'New Londo Ruins e Abismo', items: [
     i('nl-drain', 'key', 'Drene New Londo Ruins.'),
     i('nl-artorias', 'key', 'Equipe o Covenant of Artorias para atravessar o Abismo.'),
-    i('nl-kings', 'boss', 'Derrote os Four Kings no Abismo.', { verify: true }),
-    i('nl-darkwraith', 'covenant', 'Darkwraith: só possível se NÃO falou com a serpente de Firelink antes dos Four Kings.', { warn: true, verify: true }),
+    i('nl-kings', 'boss', 'Derrote os Four Kings no Abismo.'),
+    i('nl-darkwraith', 'covenant', 'Darkwraith: mate os Four Kings ainda com o Lordvessel no inventário (sem depositá-lo), fale com Kaathe e aceite.', { warn: true }),
   ]},
   { id: 'archives', area: "Duke's Archives e Crystal Cave", items: [
-    i('arch-seath-tail', 'tail', 'Quebre o cristal na arena e corte a ponta da cauda do dragão ANTES de matá-lo.', { warn: true, verify: true }),
+    i('arch-seath-tail', 'tail', 'Corte a cauda do dragão só depois de quebrar o cristal da imortalidade (impossível no primeiro encontro) e ANTES de matá-lo.', { warn: true }),
     i('arch-seath', 'boss', 'Derrote o dragão.', { full: 'Derrote Seath the Scaleless.' }),
   ]},
   { id: 'ashlake', area: 'Great Hollow e Ash Lake', items: [
-    i('ash-dragon', 'covenant', 'Path of the Dragon: desça até o fim da praia e jure lealdade ao dragão imóvel.', { verify: true }),
+    i('ash-dragon', 'covenant', 'Path of the Dragon: desça até o fim de Ash Lake e reze ao dragão imóvel. Não ataque o corpo dele.'),
   ]},
   { id: 'izalith', area: 'Demon Ruins e Lost Izalith', items: [
     i('iz-shortcut', 'key', 'Abra o atalho do caos (30 humanidades) ANTES da luta para salvar um aliado.', { warn: true, full: 'Abra o atalho do caos (30 humanidades) antes de Bed of Chaos para salvar Solaire.', verify: true }),
